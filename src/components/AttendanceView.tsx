@@ -32,12 +32,12 @@ const AttendanceView = () => {
     return matchesDate && matchesUser && matchesSearch;
   });
 
-  const calculateDuration = (login, logout) => {
+  const calculateDuration = (login: string, logout: string) => {
     if (!logout || logout === "-") return "-";
     
     const loginTime = new Date(`2024-01-01 ${login}`);
     const logoutTime = new Date(`2024-01-01 ${logout}`);
-    const diffMs = logoutTime - loginTime;
+    const diffMs = logoutTime.getTime() - loginTime.getTime();
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
     
